@@ -1,5 +1,9 @@
 # Beckline Project
 
+To run this project i started a virtual environment 
+.\venv\Scripts\activate
+then run project manage.py runserver to get the 
+webapplications started
 
 
 ## Getting started
