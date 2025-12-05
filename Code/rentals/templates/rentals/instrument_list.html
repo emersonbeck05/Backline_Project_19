@@ -1,0 +1,58 @@
+{% extends "rentals/base.html" %}
+{% block content %}
+
+<h1>Instruments</h1>
+
+<a href="{% url 'add_instrument' %}" class="btn">Add New Instrument</a>
+
+{% if rental_mode == "1" %}
+    <a href="{% url 'create_rental' %}" class="btn" style="background:#673ab7;">
+        Done Adding Instruments
+    </a>
+{% endif %}
+
+<div class="scroll-table">
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Barcode</th>
+            <th>Color</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for inst in instruments %}
+        <tr>
+            <td>{{ inst.name }}</td>
+            <td>{{ inst.category }}</td>
+            <td>{{ inst.barcode }}</td>
+            <td>{{ inst.color }}</td>
+            <td>{{ inst.status }}</td>
+
+            <td>
+                {% if rental_mode == "1" %}
+                    {% if inst.status == "available" %}
+                        <a class="add-btn"
+                           href="{% url 'add_rental_cart' inst.id %}?rental_mode=1">
+                           Add to Rental
+                        </a>
+                    {% else %}
+                        <span style="color:gray;">Unavailable</span>
+                    {% endif %}
+                {% else %}
+                    <span style="color:gray;">—</span>
+                {% endif %}
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

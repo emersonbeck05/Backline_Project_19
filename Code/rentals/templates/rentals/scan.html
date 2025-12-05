@@ -1,0 +1,24 @@
+{% extends "rentals/base.html" %}
+
+{% block title %}Scan Instrument{% endblock %}
+
+{% block content %}
+<h1>Scan Instrument</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <label>Barcode:</label>
+    <input type="text" name="barcode" autofocus>
+    
+    <select name="action">
+        <option value="rent">Rent Out</option>
+        <option value="return">Return</option>
+    </select>
+
+    <button type="submit">Submit</button>
+</form>
+
+{% if message %}
+<div class="message">{{ message }}</div>
+{% endif %}
+{% endblock %}

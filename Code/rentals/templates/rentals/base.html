@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backline Inventory</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        nav {
+            background: #222;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background: #444;
+            color: white;
+        }
+
+        .scroll-table {
+            max-height: 400px;
+            overflow-y: scroll;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="/">Scan</a>
+    <a href="/instruments/">Instruments</a>
+    <a href="/customers/">Customers</a>
+    <a href="/rentals/">Rentals</a>
+</nav>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

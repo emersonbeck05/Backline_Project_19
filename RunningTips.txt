@@ -1,0 +1,4 @@
+no docker/rlogin 
+.\venv\Scripts\activate
+cd Code
+python manage.py runserver

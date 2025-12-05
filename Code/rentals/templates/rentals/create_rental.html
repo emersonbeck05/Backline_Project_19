@@ -1,0 +1,87 @@
+{% extends "rentals/base.html" %}
+{% block content %}
+
+<h2>Create Rental</h2>
+
+{% if error %}
+<p style="color:red; font-weight:bold;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <h3>Select Existing Customer</h3>
+
+    <select name="customer_id">
+        <option value="">-- Select Existing Customer --</option>
+        {% for c in customers %}
+            <option value="{{ c.0 }}">{{ c.1 }} {{ c.2 }}</option>
+        {% endfor %}
+    </select>
+
+    <hr>
+
+    <h3>Or Add New Customer</h3>
+
+    <label>First Name</label><br>
+    <input type="text" name="new_first_name"><br><br>
+
+    <label>Last Name</label><br>
+    <input type="text" name="new_last_name"><br><br>
+
+    <label>Email</label><br>
+    <input type="email" name="new_email"><br><br>
+
+    <label>Phone Number</label><br>
+    <input type="text" name="new_phone"><br><br>
+
+    <hr>
+
+    <h3>Selected Instruments</h3>
+
+    {% if instruments %}
+        <ul>
+            {% for inst in instruments %}
+                <li>
+                    {{ inst.name }} ({{ inst.barcode }})
+                    <a style="color:red;" href="{% url 'remove_rental_cart' inst.id %}?rental_mode=1">Remove</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Complete rental -->
+        <button type="submit" class="btn">Complete Rental</button>
+
+        <!-- Keep adding instruments -->
+        <p><a href="{% url 'instrument_list' %}?rental_mode=1" class="btn">
+            Add More Instruments
+        </a></p>
+
+    {% else %}
+        <p>No instruments in the cart yet.</p>
+
+        <!-- THIS IS THE IMPORTANT FIX ↓↓↓ -->
+        <p><a href="{% url 'instrument_list' %}?rental_mode=1">Go to Instrument List</a></p>
+    {% endif %}
+
+</form>
+
+<style>
+.btn {
+    padding: 10px 16px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+}
+.btn:hover {
+    background:#45a049;
+}
+input, select {
+    padding: 6px;
+    width: 250px;
+}
+</style>
+
+{% endblock %}

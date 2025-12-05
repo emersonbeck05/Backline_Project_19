@@ -1,0 +1,30 @@
+{% extends "rentals/base.html" %}
+
+{% block content %}
+<h2>Add Instrument</h2>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Category:</label><br>
+    <input type="text" name="category" required><br><br>
+
+    <label>Barcode:</label><br>
+    <input type="text" name="barcode" required><br><br>
+
+    <label>Color:</label><br>
+    <input type="text" name="color"><br><br>
+
+    <button type="submit">Add Instrument</button>
+</form>
+
+<br>
+<a href="{% url 'instrument_list' %}">← Back to Instruments</a>
+{% endblock %}

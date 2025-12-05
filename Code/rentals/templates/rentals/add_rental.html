@@ -1,0 +1,63 @@
+{% extends "rentals/base.html" %}
+{% block content %}
+
+<h2>Create New Rental</h2>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Select Instrument (available only):</label><br>
+    <select name="instrument" multiple size="5" required>
+        {% for instr in instruments %}
+            <option value="{{ instr.id }}">{{ instr.name }} ({{ instr.barcode }})</option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label>Previous Customers:</label><br>
+    <select name="customer_select" id="customer_select" onchange="toggleNewCustomerFields()">
+        <option value="new">-- Add New Customer --</option>
+        {% for cust in customers %}
+            <option value="{{ cust.id }}">{{ cust.first_name }} {{ cust.last_name }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <div id="new_customer_fields">
+        <label>First Name:</label><br>
+        <input type="text" name="first_name"><br><br>
+
+        <label>Last Name:</label><br>
+        <input type="text" name="last_name"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email"><br><br>
+
+        <label>Phone Number:</label><br>
+        <input type="text" name="phone_number"><br><br>
+    </div>
+
+    <button type="submit">Create Rental</button>
+</form>
+
+<script>
+function toggleNewCustomerFields() {
+    var dropdown = document.getElementById("customer_select");
+    var newFields = document.getElementById("new_customer_fields");
+
+    if (dropdown.value === "new") {
+        newFields.style.display = "block";
+    } else {
+        newFields.style.display = "none";
+    }
+}
+
+// Default: show fields
+toggleNewCustomerFields();
+</script>
+
+{% endblock %}
