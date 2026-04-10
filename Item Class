@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 
 # Item Class
 class Item:
-  def __init__(self, item_id, name, stock):
-    self.item_id = item_id
+  def __init__(self, itemId, name, stock):
+    self.itemId = itemId
     self.name = name
     self.stock = stock
     self.available = stock
