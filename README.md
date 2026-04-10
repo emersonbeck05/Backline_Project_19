@@ -103,4 +103,4 @@ Controller — Django views handle user actions and update the database accordin
 
 ### **SE Process**
 
-This project uses Scrum. Weekly standups are held to coordinate progress across milestones. Sprint planning and retrospectives are documented in each Project Milestone submission.
+This project uses "Scrum". Weekly standups are held to coordinate progress across milestones. Sprint planning and retrospectives are documented in each Project Milestone submission.
