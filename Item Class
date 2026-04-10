@@ -4,6 +4,7 @@
 
 from datetime import datetime, timedelta
 
+# Item Class
 class Item:
   def __init__(self, item_id, name, stock):
     self.item_id = item_id
@@ -11,13 +12,19 @@ class Item:
     self.stock = stock
     self.available = stock
 
+# Rent Item from inventory
+# Return true for rented, false for unable to rent
 def rent_item(self):
   if (self.available > 0):
     self.available -= 1
     return True
   return False
 
+# Return Item to inventory
+# Return true for item returned, false for unable to return
 def return_item(self):
   if (self.available < self.stock):
     self.available += 1
+    return True
+  return False
     
