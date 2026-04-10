@@ -11,10 +11,10 @@ class Rental:
 
 # Date of return
 # Returns the date a rental is due
-def return_date(self):
+def returnDate(self):
   return (self.rentDate + timedelta(days=self.rentalLength))
 
 # Days rented
 # Returns number of days an item has been rented for
-def days_rented(self)
+def daysRented(self)
   return ((datetime.now() - self.rentDate).days)
