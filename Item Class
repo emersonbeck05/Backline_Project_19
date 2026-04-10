@@ -14,7 +14,7 @@ class Item:
 
 # Rent Item from inventory
 # Return true for rented, false for unable to rent
-def rent_item(self):
+def rentItem(self):
   if (self.available > 0):
     self.available -= 1
     return True
@@ -22,7 +22,7 @@ def rent_item(self):
 
 # Return Item to inventory
 # Return true for item returned, false for unable to return
-def return_item(self):
+def returnItem(self):
   if (self.available < self.stock):
     self.available += 1
     return True
