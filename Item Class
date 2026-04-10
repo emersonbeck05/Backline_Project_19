@@ -1,0 +1,23 @@
+# Item Class to track items in system
+# Ethan Jones (ethanj16@vt.edu) 4/10/2026
+# May be partially written and/or non functional yet for PM4
+
+from datetime import datetime, timedelta
+
+class Item:
+  def __init__(self, item_id, name, stock):
+    self.item_id = item_id
+    self.name = name
+    self.stock = stock
+    self.available = stock
+
+def rent_item(self):
+  if (self.available > 0):
+    self.available -= 1
+    return True
+  return False
+
+def return_item(self):
+  if (self.available < self.stock):
+    self.available += 1
+    
