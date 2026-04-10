@@ -89,7 +89,7 @@ python manage.py migrate
 
 python manage.py runserver
 
-Then open your browser to http://127.0.0.1:8000/.
+Then open your browser and navigate to the local development server.
 
 ### **Architecture**
 
