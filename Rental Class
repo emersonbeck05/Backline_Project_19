@@ -4,16 +4,17 @@
 
 # Rental Class
 class Rental:
-  def __init__(self, item, rent_date=None, duration_days=7):
+  def __init__(self, item, rentDate=None, rentalLength=7):
     self.item = item
-    self.rent_date = rent_date or datetime.now()
-    self.duration_days = duration_days
+    self.rentDate = rentDate or datetime.now()
+    self.rentalLength = rentalLength
 
 # Date of return
 # Returns the date a rental is due
 def return_date(self):
-  return (self.rent_date + timedelta(days=self.duration_days))
+  return (self.rentDate + timedelta(days=self.rentalLength))
+
 # Days rented
 # Returns number of days an item has been rented for
 def days_rented(self)
-  return ((datetime.now() - self.rent_date).days)
+  return ((datetime.now() - self.rentDate).days)
