@@ -2,14 +2,18 @@
 # Ethan Jones (ethanj16@vt.edu) 4/10/2026
 # May be partially written and/or non functional yet for PM4
 
+# Rental Class
 class Rental:
   def __init__(self, item, rent_date=None, duration_days=7):
     self.item = item
     self.rent_date = rent_date or datetime.now()
     self.duration_days = duration_days
 
+# Date of return
+# Returns the date a rental is due
 def return_date(self):
   return (self.rent_date + timedelta(days=self.duration_days))
-
+# Days rented
+# Returns number of days an item has been rented for
 def days_rented(self)
   return ((datetime.now() - self.rent_date).days)
