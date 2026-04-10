@@ -1,0 +1,40 @@
+# System Manager for rental system
+# Ethan Jones (ethanj16@vt.edu) 4/10/2026
+# May be partially written and/or non functional yet for PM4
+
+class RentalSystem:
+    def __init__(self):
+        self.inventory = {}   
+        self.customers = {}   
+        self.employees = {}   
+
+    def add_item(self, item_id, name, stock):
+        self.inventory[item_id] = Item(item_id, name, stock)
+
+    def get_item(self, item_id):
+        return self.inventory.get(item_id)
+
+    def add_customer(self, customer_id, name):
+        self.customers[customer_id] = Customer(customer_id, name)
+
+    def get_customer(self, customer_id):
+        return self.customers.get(customer_id)
+
+    def add_employee(self, employee_id, name):
+        self.employees[employee_id] = Employee(employee_id, name)
+
+    def get_employee(self, employee_id):
+        return self.employees.get(employee_id)
+
+    def rent_item(self, customer_id, item_id, duration_days = 7):
+        customer = self.get_customer(customer_id)
+        item = self.get_item(item_id)
+        if (customer and item):
+            return customer.rent_item(item, duration_days)
+        return False
+
+    def return_item(self, customer_id, item_id):
+        customer = self.get_customer(customer_id)
+        if (customer):
+            return customer.return_item(item_id)
+        return False
