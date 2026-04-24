@@ -1,0 +1,36 @@
+# Customer Class to allow customer accounts
+# Ethan Jones (ethanj16@vt.edu) 4/10/2026
+# May be partially written and/or non functional yet for PM4
+
+# Customer Class
+class Customer:
+  def __init__(self, customerId, name):
+    self.customerId = customerId
+    self.name = name
+    self.rentals = []
+
+# Rent an item
+# Return true if item rented/checked out, false if not
+  def rentItem(self, item, rentalLength = 7):
+    if item.rent_item():
+      rental = Rental(item, rentalLength = rentalLength)
+      self.rentals.append(rental)
+      return True
+    return False
+
+# Return an item
+# Return true if item returned/checked in, false if not
+  def returnItem(self, item_id):
+      for rental in self.rentals:
+          if (rental.item.item_id == item_id):
+              rental.item.return_item()
+              self.rentals.remove(rental)
+              return True
+      return False
+
+# View rentals
+# Returns a list of a customers active rental items
+  def viewRentals(self):
+      return [ for rental in self.rentals
+          { "item":rental.item.name, "days_rented":rental.days_rented(), "return_date":rental.return_date() }
+             ]

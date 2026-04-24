@@ -1,0 +1,26 @@
+# Employee Class to allow employee accounts
+# Ethan Jones (ethanj16@vt.edu) 4/10/2026
+# May be partially written and/or non functional yet for PM4
+
+# Employee Class
+class Employee:
+    def __init__(self, employee_id, name):
+        self.employee_id = employee_id
+        self.name = name
+
+# View all inventory in system
+# Returns a list of each item, its id, name, stock, and availablility
+    def viewInventory(self, inventory):
+        return [ for item in inventory.values()
+            { "item_id":item.item_id, "name":item.name, "stock":item.stock, "available":item.available }
+               ]
+
+# View a customers rentals
+# Reutrns a list of each rental for a customer
+    def viewCustomerRentals(self, customers):
+        report = {}
+        for customer in customers.values():
+            report[customer.name] = [ for rental in customer.rentals
+                { "item":rental.item.name, "days_rented":rental.days_rented(), "due_date":rental.due_date() }
+                                    ]
+        return report

@@ -1,0 +1,51 @@
+# System Manager for rental system
+# Ethan Jones (ethanj16@vt.edu) 4/10/2026
+# May be partially written and/or non functional yet for PM4
+
+# System Manager for backend
+class RentalSystem:
+    def __init__(self):
+        self.inventory = {}   
+        self.customers = {}   
+        self.employees = {}   
+
+# Add item to inventory
+    def addItem(self, itemId, name, stock):
+        self.inventory[itemId] = Item(itemId, name, stock)
+
+# Get item from inventory
+    def getItem(self, item_id):
+        return self.inventory.get(itemId)
+
+# Add customer
+    def addCustomer(self, customerId, name):
+        self.customers[customerId] = Customer(customerId, name)
+
+# Get customer info
+    def getCustomer(self, customerId):
+        return self.customers.get(customerId)
+
+# Add employee
+    def addEmployee(self, employeeId, name):
+        self.employees[employeeId] = Employee(employeeId, name)
+
+# Get employee info
+    def getEmployee(self, employeeId):
+        return self.employees.get(employeeId)
+
+# Rent Item
+# Return true if rented, false otherwise
+    def rentItem(self, customerId, itemId, rentalLength = 7):
+        customer = self.get_customer(customerId)
+        item = self.get_item(itemId)
+        if (customer and item):
+            return customer.rent_item(item, rentalLength)
+        return False
+
+# Return Item
+# Return true if returned, false otherwise
+    def returnItem(self, customerId, itemId):
+        customer = self.get_customer(customerId)
+        if (customer):
+            return customer.return_item(itemId)
+        return False
