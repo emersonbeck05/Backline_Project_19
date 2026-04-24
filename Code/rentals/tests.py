@@ -3,15 +3,17 @@ from .models import Customer, Instrument, Rental, RentalItem
 from django.utils import timezone
 from django.db import IntegrityError
 
+# Class to test users, rental items, and rentals
 class ModelTests(TestCase):
-
     def setUp(self):
+        # Set up a customer user account
         self.customer = Customer.objects.create(
             first_name="John",
             last_name="Doe",
             email="JohnDoe@test.com",
             phone_number="1234567890"
         )
+        # Set up an instrument item
         self.instrument = Instrument.objects.create(
             barcode="1234567890123",
             name="Fender Stratocaster",
@@ -19,11 +21,13 @@ class ModelTests(TestCase):
             status="available",
             color="Red"
         )
+        # Set up a rental with dates
         self.rental = Rental.objects.create(
             customer=self.customer,
             rental_date=timezone.now().strftime("%Y-%m-%d %H:%M:%S"),
             returned=False
         )
+        # Set up a rental of the instrument item
         self.rental_item = RentalItem.objects.create(
             rental=self.rental,
             instrument=self.instrument
@@ -36,7 +40,7 @@ class ModelTests(TestCase):
         self.assertIsNotNone(self.customer.id)
         self.assertIsInstance(self.customer.id, int)
         self.assertGreater(self.customer.id, 0)
-
+    # Create addition customer
     def test_multiple_customers(self):
         self.customer2 = Customer.objects.create(
             first_name="Jane",
@@ -82,7 +86,7 @@ class ModelTests(TestCase):
         self.assertEqual(self.instrument.status, "available")
         self.assertEqual(self.instrument.color, "Red")
         self.assertIsNotNone(self.instrument.id)
-
+    # Test additional instrument items
     def test_multiple_instruments(self):
         self.instrument2 = Instrument.objects.create(
             barcode="9876543210987",
@@ -109,7 +113,7 @@ class ModelTests(TestCase):
                 color="Red"
             )
         print(str(context.exception))
-
+    # Test duplicate instrument items
     def test_two_same_instrument_different_barcodes(self):
         self.instrument2 = Instrument.objects.create(
             barcode="246810121618",
@@ -123,7 +127,7 @@ class ModelTests(TestCase):
         self.assertEqual(self.instrument2.name, "Fender Stratocaster")
         self.assertNotEqual(self.instrument.barcode, self.instrument2.barcode)
         self.assertNotEqual(self.instrument.id, self.instrument2.id)
-
+    # Test status change of an instrument item in inventory
     def test_instrument_status_change(self):
         self.instrument4 = Instrument.objects.create(
             barcode="3691215182124",
@@ -148,7 +152,7 @@ class ModelTests(TestCase):
         self.assertEqual(self.rental.returned, False)
         self.assertEqual(self.rental.return_date, None)
         self.assertIsNotNone(self.rental.id)
-
+    # Test additional rentals for one customer
     def test_multiple_rentals_same_customer(self):
         self.rental2 = Rental.objects.create(
             customer=self.customer,
@@ -159,7 +163,7 @@ class ModelTests(TestCase):
         self.assertEqual(self.rental2.customer, self.customer)
         self.assertNotEqual(self.rental.id, self.rental2.id)
         self.assertEqual(Rental.objects.count(), 2)
-
+    # Test returning an item
     def test_rental_return(self):
         # rental is returned
         self.rental.returned = True
