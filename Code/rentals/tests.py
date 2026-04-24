@@ -52,6 +52,7 @@ class ModelTests(TestCase):
         self.assertEqual(self.customer2.email, "Jane@test.com")
         self.assertNotEqual(self.customer.phone_number, self.customer2.phone_number)
 
+    #Test made using AI to understnad IntegrityError with unique keys
     def test_same_customer_email(self):
         with self.assertRaises(IntegrityError) as context:
             Customer.objects.create(
@@ -61,7 +62,7 @@ class ModelTests(TestCase):
                 phone_number="1112223333"
             )
         print(str(context.exception))
-
+    #Test made using AI to understnad IntegrityError with unique keys
     def test_same_customer_phoneNumber(self):
         with self.assertRaises(IntegrityError) as context:
             Customer.objects.create(
@@ -97,6 +98,7 @@ class ModelTests(TestCase):
         self.assertEqual(self.instrument.name, "Fender Stratocaster")
         self.assertEqual(self.instrument2.name, "Gibson Les Paul")
 
+    #Test made using AI to understnad IntegrityError with unique keys
     def test_same_instrument_barcode(self):
         with self.assertRaises(IntegrityError) as context:
             Instrument.objects.create(
