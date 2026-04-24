@@ -20,7 +20,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=255) #customers First name
     last_name = models.CharField(max_length=255) # Customer's last name
     email = models.EmailField(unique=True) #customers email
-    phone_number = models.CharField(max_length=20, null=True, blank=True) #customers phone number
+    phone_number = models.CharField(max_length=20, null=True, blank=True, unique=True) #customers phone number
 
     class Meta: #used to define the database table name
         db_table = "customer"
